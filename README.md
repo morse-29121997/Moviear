@@ -12,5 +12,9 @@ This is a Kotlin Multiplatform project targeting Android, iOS.
 * `/iosApp` contains iOS applications. Even if you’re sharing your UI with Compose Multiplatform, 
   you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
 
+Project Resources :
+
+* API from TMDP.org [Movies TMDP API](https://developer.themoviedb.org/reference/intro/getting-started)
+* Design from Figma by Cielo [Figma Resource File](https://www.figma.com/community/file/1342073736688756940/moviear)
 
 Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
