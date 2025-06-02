@@ -1,4 +1,4 @@
-package com.mohamed.morse.moviear.screens
+package com.mohamed.morse.moviear.screens.splash
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -13,7 +13,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.mohamed.morse.moviear.theme.Colors
 import moviear.composeapp.generated.resources.Res
-import moviear.composeapp.generated.resources.compose_multiplatform
 import moviear.composeapp.generated.resources.moviear_logo
 import moviear.composeapp.generated.resources.splas_bg
 import org.jetbrains.compose.resources.painterResource

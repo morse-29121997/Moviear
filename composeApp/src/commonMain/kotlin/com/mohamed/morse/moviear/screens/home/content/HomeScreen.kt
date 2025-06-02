@@ -1,4 +1,4 @@
-package com.mohamed.morse.moviear.screens
+package com.mohamed.morse.moviear.screens.home.content
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -26,6 +26,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.mohamed.morse.moviear.screens.home.tabs.DownloadsContent
+import com.mohamed.morse.moviear.screens.home.tabs.MoviesContent
+import com.mohamed.morse.moviear.screens.home.tabs.PlusContent
+import com.mohamed.morse.moviear.screens.home.tabs.ProfileContent
+import com.mohamed.morse.moviear.screens.home.tabs.WatchlistContent
 import com.mohamed.morse.moviear.theme.Colors
 import moviear.composeapp.generated.resources.Res
 import moviear.composeapp.generated.resources.downloads_icon
@@ -34,10 +39,8 @@ import moviear.composeapp.generated.resources.logo_icon
 import moviear.composeapp.generated.resources.plus_icon
 import moviear.composeapp.generated.resources.profile_icon
 import moviear.composeapp.generated.resources.search_loupe
-import moviear.composeapp.generated.resources.splas_bg
 import moviear.composeapp.generated.resources.watch_list_icon
 import org.jetbrains.compose.resources.DrawableResource
-import org.jetbrains.compose.resources.imageResource
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.vectorResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -71,20 +74,27 @@ fun HomeScreen() {
                 )
             )
         }
+        when(destinations.value){
+           Destinations.Home -> MoviesContent(modifier = Modifier.align(Alignment.Center))
+           Destinations.Plus -> PlusContent(modifier = Modifier.align(Alignment.Center))
+           Destinations.Profile -> ProfileContent(modifier = Modifier.align(Alignment.Center))
+           Destinations.Downloads -> DownloadsContent(modifier = Modifier.align(Alignment.Center))
+           Destinations.Watchlist -> WatchlistContent(modifier = Modifier.align(Alignment.Center))
+        }
         BottomNavigation(
             modifier = Modifier.align(Alignment.BottomCenter).padding(bottom = 20.dp),
             backgroundColor = Colors.FontColors.black
         ) {
             Row {
-                BottomNavigationItem(Res.drawable.home_icon , "Home" , destinations.value == Destinations.Home){destinations.value = Destinations.Home}
+                BottomNavigationItem(Res.drawable.home_icon , "Home" , destinations.value == Destinations.Home){destinations.value = Destinations.Home }
                 Spacer(Modifier.width(15.dp))
-                BottomNavigationItem(Res.drawable.watch_list_icon , "Watchlist" , destinations.value == Destinations.Watchlist){destinations.value = Destinations.Watchlist}
+                BottomNavigationItem(Res.drawable.watch_list_icon , "Watchlist" , destinations.value == Destinations.Watchlist){destinations.value = Destinations.Watchlist }
                 Spacer(Modifier.width(15.dp))
-                BottomNavigationItem(Res.drawable.downloads_icon , "Downloads" , destinations.value == Destinations.Downloads){destinations.value = Destinations.Downloads}
+                BottomNavigationItem(Res.drawable.downloads_icon , "Downloads" , destinations.value == Destinations.Downloads){destinations.value = Destinations.Downloads }
                 Spacer(Modifier.width(15.dp))
-                BottomNavigationItem(Res.drawable.plus_icon , "Plus" , destinations.value == Destinations.Plus){destinations.value = Destinations.Plus}
+                BottomNavigationItem(Res.drawable.plus_icon , "Plus" , destinations.value == Destinations.Plus){destinations.value = Destinations.Plus }
                 Spacer(Modifier.width(15.dp))
-                BottomNavigationItem(Res.drawable.profile_icon , "Profile" , destinations.value == Destinations.Profile){destinations.value = Destinations.Profile}
+                BottomNavigationItem(Res.drawable.profile_icon , "Profile" , destinations.value == Destinations.Profile){destinations.value = Destinations.Profile }
             }
         }
     }
