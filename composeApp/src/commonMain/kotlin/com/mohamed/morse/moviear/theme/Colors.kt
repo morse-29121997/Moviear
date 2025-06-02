@@ -5,5 +5,6 @@ import androidx.compose.ui.graphics.Color
 object Colors {
     object FontColors {
         val white = Color(0XFFFFFFFF)
+        val black = Color(0XFF000000)
     }
 }

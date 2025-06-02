@@ -10,6 +10,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.mohamed.morse.moviear.screens.HomeScreen
 import com.mohamed.morse.moviear.screens.SplashScreen
 import com.mohamed.morse.moviear.theme.UbuntuTypography
 import org.jetbrains.compose.resources.painterResource
@@ -22,6 +23,6 @@ import moviear.composeapp.generated.resources.compose_multiplatform
 @Preview
 fun App() {
     MaterialTheme(typography = UbuntuTypography()) {
-        SplashScreen()
+        HomeScreen()
     }
 }
