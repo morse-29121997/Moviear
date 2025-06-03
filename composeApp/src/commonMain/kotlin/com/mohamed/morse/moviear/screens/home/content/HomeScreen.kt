@@ -20,7 +20,10 @@ import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -46,13 +49,17 @@ import org.jetbrains.compose.resources.vectorResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 enum class Destinations {
-    Home , Plus , Downloads , Profile , Watchlist
+    Home,
+    Plus,
+    Downloads,
+    Profile,
+    Watchlist
 }
 
 @Preview
 @Composable
 fun HomeScreen() {
-    val destinations : MutableState<Destinations> = mutableStateOf(Destinations.Home)
+    var destinations: Destinations by remember { mutableStateOf(Destinations.Home) }
     Box(modifier = Modifier.fillMaxSize().background(Colors.FontColors.black)) {
         Box(
             modifier = Modifier.fillMaxWidth().height(80.dp).padding(top = 40.dp)
@@ -74,34 +81,71 @@ fun HomeScreen() {
                 )
             )
         }
-        when(destinations.value){
-           Destinations.Home -> MoviesContent(modifier = Modifier.align(Alignment.Center))
-           Destinations.Plus -> PlusContent(modifier = Modifier.align(Alignment.Center))
-           Destinations.Profile -> ProfileContent(modifier = Modifier.align(Alignment.Center))
-           Destinations.Downloads -> DownloadsContent(modifier = Modifier.align(Alignment.Center))
-           Destinations.Watchlist -> WatchlistContent(modifier = Modifier.align(Alignment.Center))
-        }
+
         BottomNavigation(
             modifier = Modifier.align(Alignment.BottomCenter).padding(bottom = 20.dp),
             backgroundColor = Colors.FontColors.black
         ) {
             Row {
-                BottomNavigationItem(Res.drawable.home_icon , "Home" , destinations.value == Destinations.Home){destinations.value = Destinations.Home }
+                BottomNavigationItem(
+                    Res.drawable.home_icon,
+                    "Home",
+                    destinations == Destinations.Home
+                ) {
+                    destinations = Destinations.Home
+                }
                 Spacer(Modifier.width(15.dp))
-                BottomNavigationItem(Res.drawable.watch_list_icon , "Watchlist" , destinations.value == Destinations.Watchlist){destinations.value = Destinations.Watchlist }
+                BottomNavigationItem(
+                    Res.drawable.watch_list_icon,
+                    "Watchlist",
+                    destinations == Destinations.Watchlist
+                ) {
+                    destinations = Destinations.Watchlist
+                }
                 Spacer(Modifier.width(15.dp))
-                BottomNavigationItem(Res.drawable.downloads_icon , "Downloads" , destinations.value == Destinations.Downloads){destinations.value = Destinations.Downloads }
+                BottomNavigationItem(
+                    Res.drawable.downloads_icon,
+                    "Downloads",
+                    destinations == Destinations.Downloads
+                ) {
+                    destinations = Destinations.Downloads
+                }
                 Spacer(Modifier.width(15.dp))
-                BottomNavigationItem(Res.drawable.plus_icon , "Plus" , destinations.value == Destinations.Plus){destinations.value = Destinations.Plus }
+                BottomNavigationItem(
+                    Res.drawable.plus_icon,
+                    "Plus",
+                    destinations == Destinations.Plus
+                ) {
+                    destinations = Destinations.Plus
+                }
                 Spacer(Modifier.width(15.dp))
-                BottomNavigationItem(Res.drawable.profile_icon , "Profile" , destinations.value == Destinations.Profile){destinations.value = Destinations.Profile }
+                BottomNavigationItem(
+                    Res.drawable.profile_icon,
+                    "Profile",
+                    destinations == Destinations.Profile
+                ) {
+                    destinations = Destinations.Profile
+                }
             }
+        }
+
+        when (destinations) {
+            Destinations.Home -> MoviesContent(modifier = Modifier.align(Alignment.Center))
+            Destinations.Plus -> PlusContent(modifier = Modifier.align(Alignment.Center))
+            Destinations.Profile -> ProfileContent(modifier = Modifier.align(Alignment.Center))
+            Destinations.Downloads -> DownloadsContent(modifier = Modifier.align(Alignment.Center))
+            Destinations.Watchlist -> WatchlistContent(modifier = Modifier.align(Alignment.Center))
         }
     }
 }
 
 @Composable
-fun BottomNavigationItem(icon: DrawableResource, name: String, isSelected: Boolean = false , onClick : () -> Unit = {}) {
+fun BottomNavigationItem(
+    icon: DrawableResource,
+    name: String,
+    isSelected: Boolean = false,
+    onClick: () -> Unit = {}
+) {
     Column(
         modifier = Modifier.padding(10.dp).defaultMinSize(minWidth = 25.dp).clickable { onClick() },
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -115,8 +159,8 @@ fun BottomNavigationItem(icon: DrawableResource, name: String, isSelected: Boole
         Spacer(Modifier.height(10.dp))
         Text(
             text = name,
-            color = if (isSelected) Colors.FontColors.white else Colors.FontColors.white.copy(alpha = 0.5f) ,
-            fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal ,
+            color = if (isSelected) Colors.FontColors.white else Colors.FontColors.white.copy(alpha = 0.5f),
+            fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal,
             fontSize = if (isSelected) 13.sp else 12.sp
         )
     }
