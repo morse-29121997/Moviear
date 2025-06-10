@@ -59,34 +59,20 @@ enum class Destinations {
 @Preview
 @Composable
 fun HomeScreen() {
-    var destinations: Destinations by remember { mutableStateOf(Destinations.Home) }
+    var destinations: Destinations by remember { mutableStateOf(Destinations.Watchlist) }
     Box(modifier = Modifier.fillMaxSize().background(Colors.FontColors.black)) {
-        Box(
-            modifier = Modifier.fillMaxWidth().height(80.dp).padding(top = 40.dp)
-                .align(Alignment.TopCenter)
-
-        ) {
-            Image(
-                painter = painterResource(resource = Res.drawable.logo_icon),
-                contentDescription = null,
-                modifier = Modifier.size(25.dp).align(
-                    Alignment.Center
-                )
-            )
-            Image(
-                painter = painterResource(resource = Res.drawable.search_loupe),
-                contentDescription = null,
-                modifier = Modifier.padding(end = 10.dp).size(20.dp).align(
-                    Alignment.CenterEnd
-                )
-            )
+        when (destinations) {
+            Destinations.Home -> MoviesContent()
+            Destinations.Plus -> PlusContent()
+            Destinations.Profile -> ProfileContent()
+            Destinations.Downloads -> DownloadsContent()
+            Destinations.Watchlist -> WatchlistContent()
         }
-
         BottomNavigation(
-            modifier = Modifier.align(Alignment.BottomCenter).padding(bottom = 20.dp),
+            modifier = Modifier.align(Alignment.BottomCenter),
             backgroundColor = Colors.FontColors.black
         ) {
-            Row {
+            Row(modifier = Modifier.padding(bottom = 20.dp)) {
                 BottomNavigationItem(
                     Res.drawable.home_icon,
                     "Home",
@@ -129,13 +115,7 @@ fun HomeScreen() {
             }
         }
 
-        when (destinations) {
-            Destinations.Home -> MoviesContent(modifier = Modifier.align(Alignment.Center))
-            Destinations.Plus -> PlusContent(modifier = Modifier.align(Alignment.Center))
-            Destinations.Profile -> ProfileContent(modifier = Modifier.align(Alignment.Center))
-            Destinations.Downloads -> DownloadsContent(modifier = Modifier.align(Alignment.Center))
-            Destinations.Watchlist -> WatchlistContent(modifier = Modifier.align(Alignment.Center))
-        }
+
     }
 }
 
