@@ -43,7 +43,7 @@ fun DownloadsContent() {
         Image(
             painter = painterResource(resource = Res.drawable.logo_icon),
             contentDescription = null,
-            modifier = Modifier.padding(top = 70.dp).size(17.dp, 24.dp),
+            modifier = Modifier.padding(top = 0.dp).size(17.dp, 24.dp),
             contentScale = ContentScale.FillBounds
         )
         Text(

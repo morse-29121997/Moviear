@@ -59,7 +59,7 @@ enum class Destinations {
 @Preview
 @Composable
 fun HomeScreen() {
-    var destinations: Destinations by remember { mutableStateOf(Destinations.Watchlist) }
+    var destinations: Destinations by remember { mutableStateOf(Destinations.Home) }
     Box(modifier = Modifier.fillMaxSize().background(Colors.FontColors.black)) {
         when (destinations) {
             Destinations.Home -> MoviesContent()
