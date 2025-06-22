@@ -117,6 +117,7 @@ fun SettingBox(options: List<Option>) {
             )
     ) {
         options.onEach {
+
             Row(modifier = Modifier.fillMaxWidth().padding(10.dp)) {
 
                 Image(
@@ -132,6 +133,7 @@ fun SettingBox(options: List<Option>) {
                     fontWeight = FontWeight.Medium,
                     fontSize = 12.sp
                 )
+
             }
         }
     }
