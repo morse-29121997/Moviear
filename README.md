@@ -14,7 +14,7 @@ This is a Kotlin Multiplatform project targeting Android, iOS.
 
 Project Resources :
 
-* APIS  [Anime TMDP API]([[https://developer.themoviedb.org/reference/intro/getting-started](https://docs.google.com/document/d/1SkfY5QrJ9yl-fKKDu4LFYvqTtZ_kPlGA-vbo4whotOk/edit?usp=sharing)](https://docs.google.com/document/d/1SkfY5QrJ9yl-fKKDu4LFYvqTtZ_kPlGA-vbo4whotOk/edit?usp=sharing))
+* APIS  [Anime TMDP API](https://docs.google.com/document/d/1SkfY5QrJ9yl-fKKDu4LFYvqTtZ_kPlGA-vbo4whotOk/edit?usp=sharing)
 * Design from Figma by Cielo [Figma Resource File](https://www.figma.com/community/file/1342073736688756940/moviear)
 * Tasks Tracking and Plan for next steps [Notion](https://www.notion.so/Moviear-Application-1e295ef762988092bb28dc9c9b09b2b5?pvs=4))
 
