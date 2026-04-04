@@ -5,10 +5,12 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.defaultMinSize
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -16,6 +18,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.BottomNavigation
+import androidx.compose.material.BottomNavigationDefaults
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -27,6 +30,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.mohamed.morse.moviear.screens.home.tabs.DownloadsContent
@@ -69,48 +73,51 @@ fun HomeScreen(destinations: Destinations = Destinations.Home) {
             Destinations.Watchlist -> WatchlistContent()
         }
         BottomNavigation(
-            modifier = Modifier.align(Alignment.BottomCenter),
-            backgroundColor = Colors.FontColors.black
+            modifier = Modifier.align(Alignment.BottomCenter).height(90.dp),
+            backgroundColor = Colors.FontColors.black ,
+            elevation = 5.dp
         ) {
-            Row(modifier = Modifier.padding(bottom = 20.dp)) {
-                BottomNavigationItem(
-                    Res.drawable.home_icon,
-                    "Home",
-                    destinations == Destinations.Home
-                ) {
-                    destinations = Destinations.Home
-                }
-                Spacer(Modifier.width(15.dp))
-                BottomNavigationItem(
-                    Res.drawable.watch_list_icon,
-                    "Watchlist",
-                    destinations == Destinations.Watchlist
-                ) {
-                    destinations = Destinations.Watchlist
-                }
-                Spacer(Modifier.width(15.dp))
-                BottomNavigationItem(
-                    Res.drawable.downloads_icon,
-                    "Downloads",
-                    destinations == Destinations.Downloads
-                ) {
-                    destinations = Destinations.Downloads
-                }
-                Spacer(Modifier.width(15.dp))
-                BottomNavigationItem(
-                    Res.drawable.plus_icon,
-                    "Plus",
-                    destinations == Destinations.Plus
-                ) {
-                    destinations = Destinations.Plus
-                }
-                Spacer(Modifier.width(15.dp))
-                BottomNavigationItem(
-                    Res.drawable.profile_icon,
-                    "Profile",
-                    destinations == Destinations.Profile
-                ) {
-                    destinations = Destinations.Profile
+            BoxWithConstraints(modifier = Modifier.fillMaxHeight().padding(bottom = 10.dp)) {
+                val itemWidth = this.maxWidth / 5
+                Row(modifier = Modifier.align(Alignment.Center).fillMaxWidth()) {
+                    BottomNavigationItem(
+                        itemWidth,
+                        Res.drawable.home_icon,
+                        "Home",
+                        destinations == Destinations.Home
+                    ) {
+                        destinations = Destinations.Home
+                    }
+                    BottomNavigationItem(itemWidth,
+                        Res.drawable.watch_list_icon,
+                        "Watchlist",
+                        destinations == Destinations.Watchlist
+                    ) {
+                        destinations = Destinations.Watchlist
+                    }
+                    BottomNavigationItem(itemWidth,
+                        Res.drawable.downloads_icon,
+                        "Downloads",
+                        destinations == Destinations.Downloads
+                    ) {
+                        destinations = Destinations.Downloads
+                    }
+                    BottomNavigationItem(
+                        itemWidth,
+                        Res.drawable.plus_icon,
+                        "Plus",
+                        destinations == Destinations.Plus
+                    ) {
+                        destinations = Destinations.Plus
+                    }
+                    BottomNavigationItem(
+                        itemWidth,
+                        Res.drawable.profile_icon,
+                        "Profile",
+                        destinations == Destinations.Profile
+                    ) {
+                        destinations = Destinations.Profile
+                    }
                 }
             }
         }
@@ -121,13 +128,14 @@ fun HomeScreen(destinations: Destinations = Destinations.Home) {
 
 @Composable
 fun BottomNavigationItem(
+    width : Dp ,
     icon: DrawableResource,
     name: String,
     isSelected: Boolean = false,
     onClick: () -> Unit = {}
 ) {
     Column(
-        modifier = Modifier.padding(10.dp).defaultMinSize(minWidth = 25.dp).clickable { onClick() },
+        modifier = Modifier.fillMaxHeight().defaultMinSize(minWidth = width ).padding(vertical = 10.dp , horizontal = 5.dp ).clickable { onClick() },
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
@@ -136,7 +144,7 @@ fun BottomNavigationItem(
             contentDescription = null,
             tint = if (isSelected) Colors.FontColors.white else Colors.FontColors.white.copy(alpha = 0.5f)
         )
-        Spacer(Modifier.height(10.dp))
+        Spacer(Modifier.height(5.dp))
         Text(
             text = name,
             color = if (isSelected) Colors.FontColors.white else Colors.FontColors.white.copy(alpha = 0.5f),

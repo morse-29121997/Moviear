@@ -139,7 +139,7 @@ fun MoviesContent() {
 @Composable
 fun FamousMovieItem() {
     BoxWithConstraints(
-        modifier = Modifier.padding(horizontal = 10.dp).width(380.dp).height(160.dp)
+        modifier = Modifier.padding(horizontal = 10.dp).width(340.dp).height(160.dp)
             .border(1.dp, Colors.FontColors.gray, RoundedCornerShape(5.dp))
     ) {
         Image(
