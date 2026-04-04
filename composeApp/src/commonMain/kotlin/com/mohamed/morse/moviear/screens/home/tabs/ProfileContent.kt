@@ -38,6 +38,7 @@ import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 
+
 @Preview
 @Composable
 fun ProfileContent() {
@@ -122,7 +123,7 @@ fun SettingBox(options: List<Option>) {
                 Image(
                     painter = painterResource(resource = it.icon),
                     contentDescription = null,
-                    modifier = Modifier.size(25.dp) ,
+                    modifier = Modifier.size(25.dp),
                 )
 
                 Text(
