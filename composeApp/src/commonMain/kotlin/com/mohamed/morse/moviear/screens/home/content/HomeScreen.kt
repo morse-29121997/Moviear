@@ -58,8 +58,8 @@ enum class Destinations {
 
 @Preview
 @Composable
-fun HomeScreen() {
-    var destinations: Destinations by remember { mutableStateOf(Destinations.Profile) }
+fun HomeScreen(destinations: Destinations = Destinations.Home) {
+    var destinations: Destinations by remember { mutableStateOf(destinations) }
     Box(modifier = Modifier.fillMaxSize().background(Colors.FontColors.black)) {
         when (destinations) {
             Destinations.Home -> MoviesContent()
